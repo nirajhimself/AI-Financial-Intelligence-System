@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Design tokens ── */
+:root {
+  --teal:         #00D4C8;
+  --teal-dim:     rgba(0,212,200,0.12);
+  --teal-border:  rgba(0,212,200,0.25);
+  --red:          #FF4560;
+  --red-dim:      rgba(255,69,96,0.12);
+  --yellow:       #F59E0B;
+  --yellow-dim:   rgba(245,158,11,0.12);
+  --purple:       #818CF8;
+  --purple-dim:   rgba(129,140,248,0.12);
+  --surface3:     #F1F5F9;
+  /* Light */
+  --bg:        #F0F4F8;
+  --surface:   #FFFFFF;
+  --surface2:  #F8FAFC;
+  --border:    rgba(0,0,0,0.07);
+  --txt:       #0F172A;
+  --txt2:      #475569;
+  --txt3:      #94A3B8;
+  --shadow:    0 2px 12px rgba(0,0,0,0.07);
+  --green:     #059669;
+  --green-dim: rgba(5,150,105,0.1);
+}
+
+.dark {
+  --bg:        #080D16;
+  --surface:   #0D1421;
+  --surface2:  #111B2E;
+  --border:    rgba(255,255,255,0.06);
+  --txt:       #E8F0FE;
+  --txt2:      #8899B4;
+  --txt3:      #3D4F6B;
+  --shadow:    0 4px 24px rgba(0,0,0,0.5);
+  --surface3:  #162035;
+  --green:     #00D4C8;
+  --green-dim: rgba(0,212,200,0.1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--txt);
+  transition: background 0.25s, color 0.25s;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar { width: 3px; height: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 999px; }
+
+/* Cards */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.card:hover { border-color: var(--teal-border); }
+
+/* Skeleton */
+.sk {
+  background: linear-gradient(90deg, var(--surface2) 25%, var(--surface) 50%, var(--surface2) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+  border-radius: 8px;
+}
+
+/* Signal chips */
+.chip-buy  { background: rgba(0,212,200,0.12); color: var(--teal);   border: 1px solid rgba(0,212,200,0.3); }
+.chip-sell { background: rgba(255,69,96,0.12);  color: var(--red);    border: 1px solid rgba(255,69,96,0.3);  }
+.chip-hold { background: rgba(245,158,11,0.12); color: var(--yellow); border: 1px solid rgba(245,158,11,0.3); }
+
+/* Ticker */
+.ticker-track { display: flex; animation: ticker 40s linear infinite; }
+.ticker-track:hover { animation-play-state: paused; }
+
+/* Animations */
+@keyframes shimmer { 0% { background-position: -200% 0 } 100% { background-position: 200% 0 } }
+@keyframes fadeUp  { from { opacity:0; transform:translateY(10px) } to { opacity:1; transform:none } }
+@keyframes ticker  { 0% { transform: translateX(0) } 100% { transform: translateX(-50%) } }
+@keyframes spin    { to { transform: rotate(360deg) } }
+
+.fade-up { animation: fadeUp 0.3s ease-out both; }
+
+input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; }
